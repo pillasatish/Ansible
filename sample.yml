@@ -1,21 +1,9 @@
-- name: Play1 
-  hosts: all  
-  tasks:  
-    - name: Print Hello from Play1 
+- name: variables
+  hosts: all
+  vars:
+    URL: paly.google.com
+  tasks:
+    - name: Print URL
       ansible.builtin.debug:
-        msg: Hello from task1 of play1 
+        msg: the value of Url is {{ URL }}
 
-    - name: Print hello from play3
-      ansible.builtin.debug:
-        msg: hello world
-
-- name: Play2
-  hosts: all  
-  tasks:  
-    - name: Print Hello from Play2
-      ansible.builtin.debug:
-        msg: Hello from task1 of play2 
-
-    - name: Print hello from play4
-      ansible.builtin.debug:
-        msg: hello world
