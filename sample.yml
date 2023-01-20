@@ -1,3 +1,5 @@
+
+#Locla Variables > Global Variables
 - name: variables
   hosts: all
   vars:
@@ -13,7 +15,7 @@
 
     - name: Print URL
       ansible.builtin.debug:
-        msg: the value of Url is {{ URL }}
+        msg: the value of Url is {{ AURL }}
       vars:
         URL: task.google.com
 
