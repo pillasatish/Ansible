@@ -1,11 +1,15 @@
+vars:
+  hostname_list:
+    - host1
+    - host2
+    - host3
+
 - name: execute the file task
   include_role:
     name: common
     tasks_from: file
-  vars:
-    hostname_list:
-      - host1
-      - host2
-      - host3
-    _nodename: "{{ item }}"
+  set_fact:
+    hostname:"{{ _nodename[0:5] }}"
   loop: "{{ hostname_list }}"
+  loop_control:
+  loop_var: _nodename
