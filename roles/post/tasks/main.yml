@@ -9,8 +9,8 @@ vars:
   include_role:
     name: common
     tasks_from: file
-  set_fact:
-    hostname:"{{ _nodename[0:5] }}"
   loop: "{{ hostname_list }}"
   loop_control:
-  loop_var: _nodename
+    loop_var: hostname
+  vars:
+    _nodename: "{{ hostname[0:5] }}"
