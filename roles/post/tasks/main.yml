@@ -1,3 +1,4 @@
+---
 vars:
   hostname_list:
     - host1
