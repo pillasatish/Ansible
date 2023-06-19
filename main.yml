@@ -15,4 +15,4 @@
 
     - name: print hostname facts
       debug:
-        var: _nodename
+        var: hostname
