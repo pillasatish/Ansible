@@ -1,7 +1,7 @@
 - name: Include variables from var.yml
   include_vars:
     file: vars/var.yml
-    
+
 - name: Set hostname variable
   include_role:
     name: common
@@ -11,6 +11,7 @@
   loop: "{{ hostname_list }}"
   loop_control:
     loop_var: item
+    pause: 1
 
 
 #     - name: Use hostname variable in another task
