@@ -3,7 +3,7 @@
   tasks:
     - name: set fact
       set_fact:
-        nodenames: "{{ _nodename }}"
+        nodenames: "{{ hostname }}"
 
     - name: Print _nodename
       debug:
