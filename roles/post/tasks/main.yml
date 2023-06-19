@@ -6,16 +6,17 @@
   include_role:
     name: common
     tasks_from: file
-  set_fact:
-    _nodename: "{{ item[0:5] | upper }}"
-  loop: "{{ hostname_list }}"
-  loop_control:
-    loop_var: _nodename
   vars:
     hostname_list:
       - host1
       - host2
       - host3
+  set_fact:
+    _nodename: "{{ item[0:5] | upper }}"
+  loop: "{{ hostname_list }}"
+  loop_control:
+    loop_var: _nodename
+
 
 #     - name: Use hostname variable in another task
 #       debug:
