@@ -11,7 +11,6 @@
   loop: "{{ hostname_list }}"
   loop_control:
     loop_var: item
-    pause: 1
 
 
 #     - name: Use hostname variable in another task
