@@ -7,9 +7,10 @@
       - host1
       - host2
       - host3
-- name: set facts
+
+- name: Set hostname fact
   set_fact:
     hostname: "{{ _nodename[0:5] | upper }}"
-    loop: "{{ hostname_list }}"
-    loop_control:
-      loop_var: _nodename
+  loop: "{{ hostname_list }}"
+  loop_control:
+    loop_var: _nodename
