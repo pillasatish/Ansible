@@ -14,3 +14,7 @@
 #       debug:
 #         msg: "Processing hostname: {{ current_hostname }}"
 
+- name: Use variables from var.yml
+  debug:
+    var: hostname_list
+
