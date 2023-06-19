@@ -7,6 +7,9 @@
       - host3
   tasks:
     - name: set hostname fact
+      include_role:
+        name: common
+        task_from: file
       set_fact:
         hostname: "{{ _nodename[0:5] | upper }}"
       loop: "{{ hostname_list }}"
