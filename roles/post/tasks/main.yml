@@ -1,9 +1,9 @@
----
-vars:
-  hostname_list:
-    - host1
-    - host2
-    - host3
+- name: execute the file task
+  vars:
+    hostname_list:
+      - host1
+      - host2
+      - host3
 
 tasks:
   - name: execute the file task
