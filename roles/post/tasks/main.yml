@@ -1,14 +1,14 @@
-- name: assign a var
-  include_role:
-    name: common
-    tasks_from: file 
+# - name: assign a var
   vars:
     hostname_list:
       - host1
       - host2
       - host3
 
-- name: Set hostname fact
-    loop: "{{ hostname_list }}"
-    loop_control:
-      loop_var: _nodename
+- name: execute the file task
+  include_role:
+    name: common
+    tasks_from: file 
+  loop: "{{ hostname_list }}"
+  loop_control:
+    loop_var: _nodename
