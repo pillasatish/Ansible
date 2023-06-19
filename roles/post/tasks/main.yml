@@ -10,9 +10,11 @@
       - host1
       - host2
       - host3
-  loop: "{{ hostname_list }}"
+  vars: 
+    _nodename: "{{ item }}"
+  loop: "{{ hostname_list[0:5] | upper}}"
   loop_control:
-    loop_var: _nodename
+    loop_var: item
 
 
 #     - name: Use hostname variable in another task
