@@ -1,7 +1,6 @@
 # - name: Include variables from var.yml
 #   include_vars:
 #     file: vars/var.yml
-
 - name: Set hostname variable
   include_role:
     name: common
@@ -11,8 +10,6 @@
       - host1
       - host2
       - host3
-  set_fact:
-    _nodename: "{{ item[0:5] | upper }}"
   loop: "{{ hostname_list }}"
   loop_control:
     loop_var: _nodename
