@@ -1,7 +1,11 @@
 - name: execute the file task
   include_role:
     name: common
-    tasks_from: file 
-  loop: "{{ hostvars[inventory_hostname]['hostname_list'] }}"
-  loop_control:
-    loop_var: _nodename
+    tasks_from: file
+  vars:
+    hostname_list:
+      - host1
+      - host2
+      - host3
+    _nodename: "{{ item }}"
+  loop: "{{ hostname_list }}"
