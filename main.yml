@@ -7,12 +7,13 @@
       - host3
   tasks:
     - name: set hostname fact
+      include: file.yml
       set_fact:
         hostname: "{{ _nodename[0:5] | upper }}"
       loop: "{{ hostname_list }}"
       loop_control:
         loop_var: _nodename
 
-    - name: print hostname facts
-      debug:
-        var: hostname
+    # - name: print hostname facts
+    #   debug:
+    #     var: hostname

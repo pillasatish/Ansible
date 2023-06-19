@@ -1,0 +1,10 @@
+- name: Use _nodename from main.yml
+  hosts: localhost
+  tasks:
+    - name: set fact
+      set_fact:
+        nodenames: "{{ _nodename }}"
+
+    - name: Print _nodename
+      debug:
+        var: nodenames
