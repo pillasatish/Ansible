@@ -1,7 +1,7 @@
 - name: assign a var
   include_role:
     name: common
-    task_from: file 
+    tasks_from: file 
   vars:
     hostname_list:
       - host1
