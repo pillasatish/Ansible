@@ -1,7 +1,6 @@
 - name: Use _nodename from post main.yml
   set_fact:
     nodenames: "{{ nodenames | default([]) + [_nodename[0:5] | upper] }}"
-  when: inventory_hostname == 'localhost'
 
 - name: Print _nodename
   debug:
