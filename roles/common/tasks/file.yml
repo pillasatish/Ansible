@@ -1,6 +1,6 @@
 - name: Use _nodename from main.yml
   set_fact:
-    nodenames: "{{ hostname }}"
+    nodenames: "{{ _nodename }}"
 
 - name: Print _nodename
   debug:
