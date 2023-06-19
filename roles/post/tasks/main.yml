@@ -2,6 +2,6 @@
   include_role:
     name: common
     tasks_from: file 
-  loop: "{{ vars['hostname_list'] }}"
+  loop: "{{ hostvars[inventory_hostname]['hostname_list'] }}"
   loop_control:
     loop_var: _nodename
