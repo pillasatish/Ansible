@@ -1,0 +1,5 @@
+# post/vars/main.yml
+hostname_list:
+  - host1
+  - host2
+  - host3
