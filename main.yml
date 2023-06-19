@@ -1,0 +1,18 @@
+- name: loop through hostnames
+  hosts: localhost
+  vars:
+    hostname_list:
+      - host1
+      - host2
+      - host3
+  tasks:
+    - name: set hostname fact
+      set_fact:
+        hostname: "{{ _nodename[0:2] | upper }}"
+      loop: "{{ hostname_list }}"
+      loop_control:
+        loop_var: _nodename
+
+    - name: print hostname facts
+      debug:
+        var: _nodename
