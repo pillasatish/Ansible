@@ -1,13 +1,18 @@
-- name: execute the file task
-  include_role:
-    name: common
-    tasks_from: file
-    vars:
-      hostname_list:
-        - host1
-        - host2
-        - host3
-      hostname: "{{ _nodename[0:5] }}"
-  loop: "{{ hostname_list }}"
-  loop_control:
-    loop_var: _nodename
+- name: Loop through hostnames and assign to variables
+  hosts: localhost
+  gather_facts: false
+  vars:
+    hostname_list:
+      - host1
+      - host2
+      - host3
+  tasks:
+    - name: Set hostname variable
+      set_fact:
+        current_hostname: "{{ item }}"
+      loop: "{{ hostname_list }}"
+
+    - name: Use hostname variable in another task
+      debug:
+        msg: "Processing hostname: {{ current_hostname }}"
+
