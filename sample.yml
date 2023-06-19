@@ -1,5 +1,5 @@
 
-#Locla Variables > Global Variables
+#command line varibales > Local Variables > Global Variables
 - name: variables
   hosts: all
   vars:
