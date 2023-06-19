@@ -1,15 +1,11 @@
-# - name: Include variables from var.yml
-#   include_vars:
-#     file: vars/var.yml
+- name: Include variables from var.yml
+  include_vars:
+    file: vars/var.yml
+    
 - name: Set hostname variable
   include_role:
     name: common
     tasks_from: file
-  vars:
-    hostname_list:
-      - host1
-      - host2
-      - host3
   vars: 
     _nodename: "{{ item }}"
   loop: "{{ hostname_list }}"
