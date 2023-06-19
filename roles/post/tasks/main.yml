@@ -9,6 +9,6 @@
       - host3
 
 - name: Set hostname fact
-  loop: "{{ hostname_list }}"
-  loop_control:
-    loop_var: _nodename
+    loop: "{{ hostname_list }}"
+    loop_control:
+      loop_var: _nodename
