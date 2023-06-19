@@ -16,5 +16,5 @@
 
 - name: Use variables from var.yml
   debug:
-    var: hostname_list
+    var: hostvars['localhost']['hostname_list']
 
