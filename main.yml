@@ -1,10 +1,17 @@
-- name: loop through hostnames
+- name: Loop through hostnames and assign to variables
   hosts: localhost
-
+  gather_facts: false
+  vars:
+    hostname_list:
+      - host1
+      - host2
+      - host3
   tasks:
-    - name: set hostname fact
-      import_role:
-        name: post
+    - name: Set hostname variable
+      set_fact:
+        current_hostname: "{{ item }}"
+      loop: "{{ hostname_list }}"
 
-
-
+    - name: Use hostname variable in another task
+      debug:
+        msg: "Processing hostname: {{ current_hostname }}"

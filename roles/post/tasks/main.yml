@@ -1,16 +1,16 @@
-- name: Loop through hostnames and assign to variables
-  vars:
-    hostname_list:
-      - host1
-      - host2
-      - host3
-  tasks:
-    - name: Set hostname variable
-      set_fact:
-        current_hostname: "{{ item }}"
-      loop: "{{ hostname_list }}"
+# - name: Loop through hostnames and assign to variables
+#   vars:
+#     hostname_list:
+#       - host1
+#       - host2
+#       - host3
+#   tasks:
+#     - name: Set hostname variable
+#       set_fact:
+#         current_hostname: "{{ item }}"
+#       loop: "{{ hostname_list }}"
 
-    - name: Use hostname variable in another task
-      debug:
-        msg: "Processing hostname: {{ current_hostname }}"
+#     - name: Use hostname variable in another task
+#       debug:
+#         msg: "Processing hostname: {{ current_hostname }}"
 
