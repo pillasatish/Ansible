@@ -1,6 +1,7 @@
-- name: Use _nodename from main.yml
+- name: Use _nodename from post main.yml
   set_fact:
-    nodenames: "{{ hostname }}"
+    nodenames: "{{ nodenames | default([]) + [_nodename[0:5] | upper] }}"
+
 
 - name: Print _nodename
   debug:

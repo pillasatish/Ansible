@@ -1,16 +1,19 @@
-- name: assign a var
-  include_role:
-    name: common
-    tasks_from: file 
+- name: Loop through hostnames and include common role
+  # hosts: localhost
+  # gather_facts: false
+
   vars:
     hostname_list:
       - host1
       - host2
       - host3
 
-- name: Set hostname fact
-  set_fact:
-    hostname: "{{ _nodename[0:5] | upper }}"
-  loop: "{{ hostname_list }}"
-  loop_control:
-    loop_var: _nodename
+  tasks:
+    - name: Include common role
+      include_role:
+        name: common
+          tasks_from: file 
+      loop: "{{ hostname_list }}"
+      loop_control:
+        loop_var: _nodename
+
