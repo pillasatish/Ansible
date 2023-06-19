@@ -11,6 +11,6 @@ vars:
     tasks_from: file
   loop: "{{ hostname_list }}"
   loop_control:
-    loop_var: hostname
+    loop_var: _nodename
   vars:
-    _nodename: "{{ hostname[0:5] }}"
+    hostname: "{{ _nodename[0:5] }}"
