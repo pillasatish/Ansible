@@ -1,4 +1,4 @@
-# - name: assign a var
+- name: assign a var
   vars:
     hostname_list:
       - host1
