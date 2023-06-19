@@ -7,7 +7,7 @@
     name: common
     tasks_from: file
   vars: 
-    _nodename: "{{ item }}"
+    _nodename: "{{ item[0:5] | upper }}"
   loop: "{{ hostname_list }}"
   loop_control:
     loop_var: item
