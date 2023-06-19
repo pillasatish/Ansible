@@ -13,8 +13,11 @@
 #     - name: Use hostname variable in another task
 #       debug:
 #         msg: "Processing hostname: {{ current_hostname }}"
+- name: Include variables from var.yml
+  include_vars:
+    file: vars/var.yml
 
 - name: Use variables from var.yml
   debug:
-    var: hostvars['localhost']['hostname_list']
+    var: hostname_list
 
