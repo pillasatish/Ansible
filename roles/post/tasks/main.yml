@@ -1,6 +1,6 @@
-- name: Include variables from var.yml
-  include_vars:
-    file: vars/var.yml
+# - name: Include variables from var.yml
+#   include_vars:
+#     file: vars/var.yml
 
 - name: Set hostname variable
   include_role:
@@ -11,6 +11,11 @@
   loop: "{{ hostname_list }}"
   loop_control:
     loop_var: _nodename
+  vars:
+    hostname_list:
+      - host1
+      - host2
+      - host3
 
 #     - name: Use hostname variable in another task
 #       debug:
