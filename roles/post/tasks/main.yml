@@ -8,7 +8,7 @@
     tasks_from: file
   vars: 
     _nodename: "{{ item[0:5] | upper }}"
-  loop: "{{ [hostname_list] }}"
+  loop: "{{ [hostname_list] | query }}"
   loop_control:
     loop_var: item
 
