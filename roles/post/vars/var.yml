@@ -1,1 +1,1 @@
-hostname_list: host1,host2
+hostname_list: [host1]
