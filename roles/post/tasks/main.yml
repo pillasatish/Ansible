@@ -6,12 +6,12 @@
   include_role:
     name: common
     tasks_from: file
-  vars:
-    _nodename: "{{ item[0:5] | upper }}"
   loop: "{{ hostname_list }}"
   #loop: "{{ hostname_list.split(',') if ',' in hostname_list else [hostname_list] }}"
   loop_control:
     loop_var: item
+  vars:
+    _nodename: "{{ item[0:5] | upper }}"
 
 - name: Set scope variable
   include_role:
