@@ -14,11 +14,9 @@
     _nodename: "{{ item[0:5] | upper }}"
 
 - name: Set scope variable
-  include_role:
-    name: common
-    tasks_from: file
-  vars:
-    scope: "{{ scope | default }}"
+  set_fact:
+    tasks_params:
+      scope: "{{ scope | default }}"
 
 
 #     - name: Use hostname variable in another task
