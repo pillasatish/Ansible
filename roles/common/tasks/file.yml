@@ -7,3 +7,11 @@
   debug:
     var: nodenames
   #when: inventory_hostname == 'localhost'
+
+- name: Use scope from post main.yml
+  set_fact:
+    sco: "{{ scope }}"
+
+- name: Print scope
+  debug:
+    var: sco
