@@ -1,16 +1,13 @@
 - name: Use _nodename from post main.yml
   set_fact:
     nodenames: "{{ _nodename }}"
+    sco: "{{ scope }}"
   #when: inventory_hostname == 'localhost'
 
 - name: Print _nodename
   debug:
     var: nodenames
   #when: inventory_hostname == 'localhost'
-
-- name: Use scope from post main.yml
-  set_fact:
-    sco: "{{ scope }}"
 
 - name: Print scope
   debug:
