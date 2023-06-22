@@ -13,12 +13,12 @@
   loop_control:
     loop_var: item
 
-- name: Set scope variable
-  include_role:
-    name: common
-    tasks_from: file
-  vars:
-    scope: "{{ scope | default }}"
+# - name: Set scope variable
+#   include_role:
+#     name: common
+#     tasks_from: file
+#   vars:
+#     scope: "{{ scope | default }}"
 
 
 #     - name: Use hostname variable in another task
