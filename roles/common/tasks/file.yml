@@ -5,8 +5,8 @@
 
 - name: Remove null values from params
   set_fact:
-    params: "{{ params | omit('scope', 'version') }}"
-  when: params is defined and (params.version is not defined or params.version is none or params.scope is not defined or params.scope is none)
+    params: "{{ params | dict2items | rejectattr('value', 'equalto', null) | items2dict }}"
+  when: params is defined and (params.version is not defined or params.scope is not defined)
 
 - name: Print _nodename
   debug:
