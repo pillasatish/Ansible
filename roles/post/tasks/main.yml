@@ -21,5 +21,6 @@
     tasks_params:
       version: "{{ version }}"
       scope: "{{ scope }}"
+      _nodename: "{{ _nodename }}"
 
 
