@@ -20,7 +20,7 @@
   vars:
     tasks_params:
       version: "{{ version }}"
-      scope: "{{ scope | default(omit) }}"
+      scope: "{{ scope }}"
 
 
 #     - name: Use hostname variable in another task
