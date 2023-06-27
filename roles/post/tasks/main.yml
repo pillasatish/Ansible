@@ -7,7 +7,6 @@
     name: common
     tasks_from: file
   loop: "{{ hostname_list }}"
-  #loop: "{{ hostname_list.split(',') if ',' in hostname_list else [hostname_list] }}"
   loop_control:
     loop_var: item
   vars:
@@ -20,7 +19,7 @@
   vars:
     tasks_params:
       version: "{{ version }}"
-      scope: "{{ scope }}"
-      _nodename: "{{ _nodename }}"
+      scope: "{{ scope | default(omit) }}"
+      _nodename: "{{ _nodename }}"  # Pass _nodename as a variable
 
 
