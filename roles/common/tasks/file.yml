@@ -1,8 +1,8 @@
 - name: Use _nodename from post main.yml
   set_fact:
-    nodenames: "{{ _nodename }}"
+    #nodenames: "{{ _nodename }}"
     params: "{{ tasks_params | default(omit) }}"
 
 - name: Print _nodename
   debug:
-    var: nodenames,params
+    var: params
