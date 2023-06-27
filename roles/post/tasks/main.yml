@@ -17,7 +17,7 @@
   set_fact:
     tasks_params:
       version: "{{ version }}"
-      scope: "{{ (scope | default(omit) }}"
+      scope: "{{ scope | default(omit) }}"
 
 
 #     - name: Use hostname variable in another task
