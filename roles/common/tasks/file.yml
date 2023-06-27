@@ -6,5 +6,5 @@
 
 - name: Print _nodename
   debug:
-    var: nodenames,scope
+    var: nodenames,scope,version
   #when: inventory_hostname == 'localhost'
