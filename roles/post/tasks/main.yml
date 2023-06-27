@@ -16,7 +16,7 @@
 - name: Set scope variable
   set_fact:
     tasks_params:
-      scope: "{{ scope | default }}"
+      scope: "{{ scope is defined and scope != '') | ternary(scope, 'DBAPTk') | default('ALL') }}"
 
 
 #     - name: Use hostname variable in another task
