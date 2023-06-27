@@ -16,7 +16,7 @@
 - name: Set scope variable
   set_fact:
     tasks_params:
-      version: "{{ version | default('latest') }}"
+      version: "{{ version }}"
       scope: "{{ (scope | default(omit) }}"
 
 
