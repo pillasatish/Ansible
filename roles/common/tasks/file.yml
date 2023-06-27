@@ -6,7 +6,7 @@
 - name: Remove null values from params
   set_fact:
     params: "{{ params | dict2items | rejectattr('value', 'equalto', null) | items2dict }}"
-  when: params is defined and (params.version is defined or params.scope is defined)
+  when: params is defined and (params.version is not defined or params.scope is not defined)
 
 - name: Print _nodename
   debug:
