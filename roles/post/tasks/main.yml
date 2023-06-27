@@ -14,7 +14,7 @@
     _nodename: "{{ item[0:5] | upper }}"
 
 - name: Set scope variable
-  var:
+  vars:
     tasks_params:
       version: "{{ version }}"
       scope: "{{ scope | default(omit) }}"
