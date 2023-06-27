@@ -1,10 +1,10 @@
 - name: Use _nodename from post main.yml
   set_fact:
     nodenames: "{{ _nodename }}"
-    scope:     "{{ scope | default(omit) }}"
+    scope:     "{{ tasks_params }}"
   #when: inventory_hostname == 'localhost'
 
 - name: Print _nodename
   debug:
-    var: nodenames,scope,version
+    var: nodenames,scope
   #when: inventory_hostname == 'localhost'
