@@ -3,7 +3,6 @@
     nodenames: "{{ _nodename }}"
     params: "{{ tasks_params | default(omit) }}"
 
-
 - name: Print _nodename
   debug:
     var: nodenames,params
