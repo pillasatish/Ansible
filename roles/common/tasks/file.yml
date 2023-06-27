@@ -1,12 +1,13 @@
 - name: Use _nodename from post main.yml
   set_fact:
     #nodenames: "{{ _nodename }}"
-    params: "{{ tasks_params }}"
-
-- name: Remove null values from params
-  set_fact:
-    params: "{{ params | default({}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
+    params: "{{ tasks_params | default({}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
   when: params is defined and (params.version is defined or params.scope is defined)
+
+# - name: Remove null values from params
+#   set_fact:
+#     params: "{{ params | default({}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
+#   when: params is defined and (params.version is defined or params.scope is defined)
 
 
 - name: Print _nodename
