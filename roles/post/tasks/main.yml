@@ -17,7 +17,7 @@
   set_fact:
     tasks_params:
       version: "{{ version | default('latest') }}"
-      scope: "{{ (scope is defined and scope != '') | ternary(scope, 'DBAPTk') | default('ALL') }}"
+      scope: "{{ (scope | default(omit) }}"
 
 
 #     - name: Use hostname variable in another task
