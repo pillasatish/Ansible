@@ -1,8 +1,8 @@
 - name: Use _nodename from post main.yml
   set_fact:
     nodenames: "{{ _nodename }}"
-    params:     "{{ tasks_params | default(omit) }}"
-  #when: inventory_hostname == 'localhost'
+    params: "{{ tasks_params | default(omit) }}"
+
 
 - name: Print _nodename
   debug:
