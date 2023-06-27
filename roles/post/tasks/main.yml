@@ -14,6 +14,9 @@
     _nodename: "{{ item[0:5] | upper }}"
 
 - name: Set scope variable
+  include_role:
+    name: common
+    tasks_from: file
   vars:
     tasks_params:
       version: "{{ version }}"
