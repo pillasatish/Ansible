@@ -11,7 +11,7 @@
       action: "{{ action }}"
       version: "{{ version }}"
       scope: "{{ scope }}"
-    _nodename: "{{ item[0:5] | upper }}"
+    _nodename: "{{ item[0:5] }}"
   loop: "{{ hostname_list }}"
   loop_control:
     loop_var: item
