@@ -1,6 +1,6 @@
 - name: Use _nodename from post main.yml
   set_fact:
-    #nodenames: "{{ _nodename }}"
+    nodenames: "{{ _nodename }}"
     params: "{{ tasks_params }}"
 
 # - name: Remove null values from params
@@ -16,4 +16,4 @@
 
 - name: Print _nodename
   debug:
-    var: params
+    var: nodenames,params

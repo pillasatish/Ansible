@@ -2,17 +2,7 @@
   include_vars:
     file: vars/var.yml
 
-# - name: Set hostname variable
-#   include_role:
-#     name: common
-#     tasks_from: file
-#   loop: "{{ hostname_list }}"
-#   loop_control:
-#     loop_var: item
-#   vars:
-#     _nodename: "{{ item[0:5] | upper }}"
-
-- name: Set scope variable
+- name: Set hostname variable
   include_role:
     name: common
     tasks_from: file
@@ -21,5 +11,19 @@
       action: "{{ action }}"
       version: "{{ version }}"
       scope: "{{ scope }}"
+    _nodename: "{{ item[0:5] | upper }}"
+  loop: "{{ hostname_list }}"
+  loop_control:
+    loop_var: item
+
+# - name: Set scope variable
+#   include_role:
+#     name: common
+#     tasks_from: file
+#   vars:
+#     tasks_params:
+#       action: "{{ action }}"
+#       version: "{{ version }}"
+#       scope: "{{ scope }}"
 
 
