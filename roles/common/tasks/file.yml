@@ -10,7 +10,7 @@
 
 - name: Remove null values from params
   set_fact:
-    params: "{{ params | default({}) | dict2items | rejectattr('value', 'equalto', None,'all') | list | items2dict }}"
+    params: "{{ params | default({}) | dict2items | rejectattr('value', 'equalto', None,all) | list | items2dict }}"
   when: params is defined and (params.version is defined or params.scope is defined)
 
 
