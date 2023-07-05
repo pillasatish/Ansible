@@ -1,4 +1,4 @@
 hostname_list: [host1, host2]
 scope: all
 version: latest
-action:
+action: precheck
