@@ -10,10 +10,8 @@
 
 - name: Remove null values from params
   set_fact:
-    params: "{{ params | default({}) | combine({'scope': params.scope}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
-  when: params is defined and (params.version is defined or params.scope is defined) and (params.scope != 'all')
-
-
+    params: "{{ params | default({}) | combine({'scope': params.scope,'version': params.version}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
+  when: params is defined and (params.version is defined or params.scope is defined) and (params.scope != 'all') and (params.version != 'latest')
 
 - name: Print _nodename
   debug:
