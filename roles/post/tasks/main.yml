@@ -34,7 +34,7 @@
       action: "{{ action }}"
       version: "{{ version | default('latest') }}"
       scope: "{{ scope | default('all') }}"
-    hostname_list: "{{ host }}"
+    hostname_list: "{{ item }}"
   loop: "{{ hostname_list }}"
   loop_control:
-    loop_var: host
+    loop_var: item
