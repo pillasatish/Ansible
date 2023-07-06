@@ -1,6 +1,6 @@
 hostname_list: [host1, host2]
 action: precheck
-scope: null
-version: null
+scope: postgresql14
+version: '14.7'
 
 
