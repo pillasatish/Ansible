@@ -9,10 +9,16 @@
 #   when: params is defined and (params.version is defined or params.scope is defined or params.scope == 'all' or params.version == 'latest')
 
 
+# - name: Remove null values from params
+#   set_fact:
+#     params: "{{ params | default({}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
+#   when: params is defined and (params.version is defined or params.scope is defined)
+
 - name: Remove null values from params
   set_fact:
-    params: "{{ params | default({}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
+    params: "{{ params | default({}) | combine({'scope': (params.scope if (params.scope != '') else None), 'version': (params.version if (params.version != '') else None)}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
   when: params is defined and (params.version is defined or params.scope is defined)
+
 
 - name: Print _nodename
   debug:
