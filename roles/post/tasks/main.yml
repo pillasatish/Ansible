@@ -9,9 +9,9 @@
   vars:
     tasks_params:
       action: "{{ action }}"
-      version: "{{ version | default(None) }}"
-      scope: "{{ scope | default(None) }}"
-    _nodename: "{{ item[0:5] }}"
+      version: "{{ version | default('latest') }}"
+      scope: "{{ scope | default('all') }}"
+    _nodename: "{{ item }}"
   loop: "{{ hostname_list }}"
   loop_control:
     loop_var: item
@@ -25,3 +25,16 @@
 #       version: "{{ version }}"
 #       scope: "{{ scope }}"
 
+- name: Set hostname runing
+  include_role:
+    name: common
+    tasks_from: result
+  vars:
+    tasks_params:
+      action: "{{ action }}"
+      version: "{{ version | default('latest') }}"
+      scope: "{{ scope | default('all') }}"
+    _nodename: "{{ item }}"
+  loop: "{{ hostname_list }}"
+  loop_control:
+    loop_var: item
