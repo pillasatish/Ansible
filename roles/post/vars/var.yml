@@ -1,4 +1,5 @@
 hostname_list: [host1, host2]
 action: precheck
 scope: DBAptk
+version: '14.7'
 
