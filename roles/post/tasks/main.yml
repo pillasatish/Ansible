@@ -9,7 +9,7 @@
   vars:
     tasks_params:
       action: "{{ action }}"
-      version: "{{ version }}"
+      version: "{{ version | default('latest') }}"
       scope: "{{ scope | default('all') }}"
     _nodename: "{{ item[0:5] }}"
   loop: "{{ hostname_list }}"

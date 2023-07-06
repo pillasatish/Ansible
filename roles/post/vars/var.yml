@@ -1,3 +1,2 @@
 hostname_list: [host1, host2]
-version:
 action: precheck
