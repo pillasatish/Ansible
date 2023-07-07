@@ -32,8 +32,8 @@
   vars:
     tasks_params:
       action: "{{ action }}"
-      version: "{{ version | default('') }}"
-      scope: "{{ scope | default('') }}"
+      version: "{{ version | default('latest') }}"
+      scope: "{{ scope | default('all') }}"
     hostname: "{{ item }}"
   loop: "{{ hostname_list }}"
   loop_control:
