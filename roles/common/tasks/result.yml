@@ -14,11 +14,15 @@
 #     params: "{{ params | default({}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
 #   when: params is defined and (params.version is defined or params.scope is defined)
 
+# - name: Remove null values from params
+#   set_fact:
+#     params: "{{ params | default({}) | combine({'scope': (params.scope if (params.scope != 'all') else None), 'version': (params.version if (params.version != 'latest') else None)}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
+#   when: params is defined and (params.version is defined or params.scope is defined)
+
 - name: Remove null values from params
   set_fact:
-    params: "{{ params | default({}) | combine({'scope': (params.scope if (params.scope != 'all') else None), 'version': (params.version if (params.version != 'latest') else None)}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
-  when: params is defined and (params.version is defined or params.scope is defined)
-
+    params: "{{ params | default({}) | combine({'version': (params.version if (params.version != 'latest') else None)}) | dict2items | rejectattr('value', 'equalto', None) | list | items2dict }}"
+  when: params is defined and (params.version is defined)
 
 - name: Print _nodename
   debug:

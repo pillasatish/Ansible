@@ -10,7 +10,7 @@
     tasks_params:
       action: "{{ action }}"
       version: "{{ version | default('latest') }}"
-      scope: "{{ scope | default('all') }}"
+      scope: "{{ scope }}"
     _nodename: "{{ item }}"
   loop: "{{ hostname_list }}"
   loop_control:
@@ -33,7 +33,7 @@
     tasks_params:
       action: "{{ action }}"
       version: "{{ version | default('latest') }}"
-      scope: "{{ scope | default('all') }}"
+      scope: "{{ scope }}"
     hostname: "{{ item }}"
   loop: "{{ hostname_list }}"
   loop_control:
