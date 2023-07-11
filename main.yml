@@ -22,7 +22,7 @@
 
     - name: Convert JSON data to string
       set_fact:
-        json_string: "{{ data.json.response['items'] | b64decode | from_json }}"
+        json_string: "{{ json_data.response['items'] | b64decode | from_json }}"
 
     # - name: Print JSON data
     #   debug:
