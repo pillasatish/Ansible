@@ -28,10 +28,10 @@
     #   debug:
     #     var: json_string
 
-    - name: Get results values
-      debug:
-        msg: "{{ item.item.result.output | to_string }}"
-      loop: "{{ json_string }}"
+    # - name: Get results values
+    #   debug:
+    #     msg: "{{ item.item.result.output | to_string }}"
+    #   loop: "{{ json_string }}"
 
 
 
