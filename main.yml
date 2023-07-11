@@ -26,7 +26,7 @@
 
     - name: Print JSON data
       debug:
-        var: json_data[0].item.result.output
+        var: json_string[0].item.result.output
 
 
 
