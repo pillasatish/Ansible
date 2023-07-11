@@ -24,14 +24,14 @@
       set_fact:
         json_string: "{{ json_data.content | b64decode | from_json }}"
       
-    - name: Print
-      debug:
-        var: json_string
-
-    # - name: Get results values
+    # - name: Print
     #   debug:
-    #     msg: "{{ item.item.result.output | to_string }}"
-    #   loop: "{{ results }}"
+    #     var: json_string
+
+    - name: Get results values
+      debug:
+        msg: "{{ item.item.result.output | to_string }}"
+      loop: "{{ json_data }}"
 
 
 
