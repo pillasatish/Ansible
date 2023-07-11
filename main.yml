@@ -17,7 +17,7 @@
   tasks:
     - name: Load JSON data
       slurp:
-        path: 'C:\Users\pilla\desktop\DeVops_Practice\Ansible\data.json'
+        path: 'C:\data.json'
       register: json_data
 
     - name: Convert JSON data to string
