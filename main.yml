@@ -13,11 +13,11 @@
 ---
 - name: Load and Print JSON Data
   hosts: localhost
-  # gather_facts: false
+  gather_facts: false
   tasks:
     - name: Load JSON data
       slurp:
-        path: 'C:/Users/pilla/desktop/DeVops_Practice/Ansible/data.json'
+        path: '/home/pilla/Desktop/DeVops_Practice/Ansible/data.json'
       register: json_data
 
     - name: Convert JSON data to string
@@ -27,4 +27,5 @@
     - name: Print JSON data
       debug:
         var: json_string
+
 
