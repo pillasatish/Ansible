@@ -24,9 +24,9 @@
       set_fact:
         json_string: "{{ json_data.content | b64decode | from_json }}"
       
-    # - name: Print
-    #   debug:
-    #     var: json_string
+    - name: Print
+      debug:
+        var: json_string
 
     # - name: Get results values
     #   debug:
