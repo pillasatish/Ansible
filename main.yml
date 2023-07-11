@@ -12,7 +12,7 @@
 
 ---
 - name: Load and Print JSON Data
-  # hosts: localhost
+  hosts: localhost
   # gather_facts: false
   tasks:
     - name: Load JSON data
