@@ -26,7 +26,8 @@
 
     - name: Print JSON data
       debug:
-        var: json_string[0].item.result.output
+        msg: "{{ item.item.result.output }}"
+      loop: "{{ json_string }}"
 
 
 
