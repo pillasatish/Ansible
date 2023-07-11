@@ -1,0 +1,22 @@
+{
+  "name": "Bard",
+  "species": "Large Language Model",
+  "creationDate": "2022-01-01T00:00:00Z",
+  "item": {
+    "name": "pencil",
+    "species": "Large Language Model",
+    "creationDate": "2022-01-01T00:00:00Z",
+    "result": {
+      "output": "Satish"
+    }
+  },
+  "msg": {
+    "output": "pilla"
+  },
+  "ansible": {
+    "result": {
+      "output": "Hindu"
+    },
+    "species": "Language Model"
+  }
+}

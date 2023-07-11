@@ -38,3 +38,4 @@
   loop: "{{ hostname_list }}"
   loop_control:
     loop_var: item
+
