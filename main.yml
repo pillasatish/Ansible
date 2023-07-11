@@ -4,9 +4,9 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Include post role
-      import_role:
-        name: post
+    # - name: Include post role
+    #   import_role:
+    #     name: post
 
     - name: Load JSON data
       json_file:
