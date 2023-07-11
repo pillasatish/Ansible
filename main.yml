@@ -4,16 +4,9 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    # - name: Include post role
-    #   import_role:
-    #     name: post
+    - name: Include post role
+      import_role:
+        name: post
 
-    - name: Load JSON data
-      json_file:
-        path: 'C:\Users\pilla\desktop\DeVops_Practice\Ansible\data.json'
-      register: json_data
 
-    - name: Print JSON data
-      debug:
-        var: json_data
 
