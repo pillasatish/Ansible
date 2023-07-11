@@ -17,7 +17,7 @@
   tasks:
     - name: Load JSON data
       slurp:
-        path: 'C:\data.json'
+        path: 'data.json'
       register: json_data
 
     - name: Convert JSON data to string
