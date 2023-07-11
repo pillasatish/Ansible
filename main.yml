@@ -23,16 +23,15 @@
     - name: Convert JSON data to string
       set_fact:
         json_string: "{{ json_data.content | b64decode | from_json }}"
-      
-    - name: Print
+
+    - name: Extract result output values
+      set_fact:
+        result_outputs: "{{ json_string | map(attribute='item.result.output') | list }}"
+
+    - name: Print result output values
       debug:
-        var: json_string
-
-    # - name: Get results values
-    #   debug:
-    #     msg: "{{ item.item.result.output | to_string }}"
-    #   loop: "{{ json_string }}"
-
+        msg: "{{ item }}"
+      loop: "{{ result_outputs }}"
 
 
 
