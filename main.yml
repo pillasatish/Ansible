@@ -31,7 +31,7 @@
     - name: Get results values
       debug:
         msg: "{{ item.item.result.output | to_string }}"
-      loop: "{{ json_data }}"
+      loop: "{{ json_string }}"
 
 
 
