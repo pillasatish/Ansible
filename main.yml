@@ -26,11 +26,11 @@
 
     - name: Extract result output values
       set_fact:
-        result_outputs: "{{ json_string | map(attribute='item.result') | list }}"
+        result_outputs: "{{ json_string | map(attribute='item.result.output') | list }}"
 
     - name: Print result output values
       debug:
-        msg: "{{ item }}"
+        var: "{{ item }}"
       loop: "{{ result_outputs }}"
 
 
