@@ -35,6 +35,6 @@
 
     - name: Print result output values
       debug:
-        var: result_outputs
+        msg: result_outputs
 
 
