@@ -1,12 +1,25 @@
-# - name: loop through hostnames
+# # - name: loop through hostnames
+# #   hosts: localhost
+# - name: Call post role
 #   hosts: localhost
-- name: Call post role
-  hosts: localhost
-  gather_facts: false
+#   gather_facts: false
+#   tasks:
+#     - name: Include post role
+#       import_role:
+#         name: post
+
+
+
+---
+- name: Load and Print JSON Data
+  # hosts: localhost
+  # gather_facts: false
   tasks:
-    - name: Include post role
-      import_role:
-        name: post
+    - name: Load JSON data
+      community.general.json_file:
+        path: 'C:\Users\pilla\desktop\DeVops_Practice\Ansible\data.json'
+      register: json_data
 
-
-
+    - name: Print JSON data
+      debug:
+        var: json_data
