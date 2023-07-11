@@ -16,10 +16,15 @@
   # gather_facts: false
   tasks:
     - name: Load JSON data
-      community.general.json_file:
-        path: 'C:\Users\pilla\desktop\DeVops_Practice\Ansible\data.json'
+      slurp:
+        path: '/path/to/data.json'
       register: json_data
+
+    - name: Convert JSON data to string
+      set_fact:
+        json_string: "{{ json_data.content | b64decode | from_json }}"
 
     - name: Print JSON data
       debug:
-        var: json_data
+        var: json_string
+
