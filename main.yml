@@ -38,6 +38,7 @@
 #         var: result_outputs
 
 
+---
 - name: Set custom statistics
   hosts: localhost
   gather_facts: false
@@ -50,11 +51,11 @@
 
     - name: Convert JSON data to string
       set_fact:
-        outputs: "{{ outputs.content | b64decode | from_json }}" 
+        outputs: "{{ outputs.content | b64decode | from_json }}"
   
     - name: Extract Output Values and Set Facts
       set_fact:
-        msg_dict: "{{ outputs | map_attr('msg') | list }}"
+        msg_dict: "{{ outputs | map(attribute='msg') | list | combine }}"
 
     - name: Print Output List
       debug:
@@ -67,4 +68,4 @@
     - name: Set statistics
       set_stats:
         data:
-          custom_stat: "{{ {'output': msg_dict} }}"
+          custom_stat: "{{ {'output': outputs} }}"
