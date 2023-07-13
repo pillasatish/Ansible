@@ -59,6 +59,6 @@
     - name: Set statistics
       set_stats:
         data:
-          custom_stat: "{{ msg_dict }}"
+          custom_stat: "{{ outputs }}"
 
 
