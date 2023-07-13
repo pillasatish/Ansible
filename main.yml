@@ -48,10 +48,6 @@
         path: 'sa.json'
       register: outputs
 
-    - name: Convert JSON data to string
-      set_fact:
-        json_string: "{{ outputs.content | b64decode | from_json }}"
-
     - name: store output
       debug:
         var: outputs
@@ -59,4 +55,4 @@
     - name: Set statistics
       set_stats:
         data:
-          custom_stat: '{{ {"output": outputs | from_json} | to_json }}'
+          custom_stat: "{{ {'output': outputs | from_json} | to_json }}"
