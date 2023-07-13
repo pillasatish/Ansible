@@ -42,11 +42,16 @@
 - name: Set custom statistics
   hosts: localhost
   gather_facts: false
-
-  vars:
-    outputs: '{"output": ["value1", "value2", "value3"]}'
-
   tasks:
+    - name: Load JSON data
+      slurp:
+        path: 'sa.json'
+      register: outputs
+
+    - name: store output
+      debug:
+        vars: outputs
+        
     - name: Set statistics
       set_stats:
         data:
