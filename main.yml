@@ -51,7 +51,7 @@
     - name: store output
       debug:
         var: 
-          outputs: "output": ["value1", "value2", "value3"]
+          outputs: {"output": ["value1", "value2", "value3"]}
         
     - name: Set statistics
       set_stats:
