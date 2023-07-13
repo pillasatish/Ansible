@@ -45,8 +45,8 @@
 
   tasks:
     - name: Convert JSON data to string
-      var:
-        outputs: "{\"ansible_loop_var\": \"item\", \"_ansible_no_log\": false, \"item\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"changed\": false, \"msg\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"_ansible_verbose_always\": true, \"_ansible_item_label\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\"}"
+        var:
+          outputs: "{\"ansible_loop_var\": \"item\", \"_ansible_no_log\": false, \"item\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"changed\": false, \"msg\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"_ansible_verbose_always\": true, \"_ansible_item_label\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\"}"
   
     - name: Extract Output Values and Set Facts
       set_fact:
