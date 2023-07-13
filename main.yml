@@ -51,11 +51,11 @@
 
     - name: Convert JSON data to string
       set_fact:
-        json_string: "{{ outputs.content | b64decode | from_json }}" 
+        outputs: "{{ outputs.content | b64decode | from_json }}" 
 
     - name: Print JSON data
       debug:
-        var: json_string
+        var: outputs
         
     - name: Set statistics
       set_stats:
