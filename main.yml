@@ -42,19 +42,22 @@
 - name: Set custom statistics
   hosts: localhost
   gather_facts: false
-  vars:
-    outputs: {"output": ["value1", "value2", "value3"]}
+  # vars:
+  #   outputs: {"output": ["value1", "value2", "value3"]}
 
   tasks:
-    # - name: Load JSON data
-    #   slurp:
-    #     path: 'sa.json'
-    #   register: outputs
+    - name: Load JSON data
+      slurp:
+        path: 'sa.json'
+      register: outputs
 
-    # - name: store output
-    #   debug:
-    #     var: 
-    #       outputs: {"output": ["value1", "value2", "value3"]}
+    - name: Convert JSON data to string
+      set_fact:
+        json_string: "{{ outputs.content | b64decode | from_json }}" 
+
+    - name: Print JSON data
+      debug:
+        msg: "{{ json_string }}"
         
     - name: Set statistics
       set_stats:
