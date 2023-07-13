@@ -52,6 +52,14 @@
     - name: Convert JSON data to string
       set_fact:
         outputs: "{{ outputs.content | b64decode | from_json }}" 
+  
+    - name: Extract Output Values and Set Facts
+      set_fact:
+        msg_dict: "{{ outputs | map(attribute='msg') | to_list | to_dict }}"
+
+    - name: Print Output List
+      debug:
+        var: msg_dict
 
     - name: Print JSON data
       debug:
