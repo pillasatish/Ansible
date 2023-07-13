@@ -50,7 +50,7 @@
 
     - name: store output
       debug:
-        vars: outputs
+        var: outputs
         
     - name: Set statistics
       set_stats:
