@@ -60,4 +60,4 @@
     - name: Set statistics
       set_stats:
         data:
-          custom_stat: "{{ {'output': json_string} }}"
+          custom_stat: "{{ {'output': outputs} }}"
