@@ -48,6 +48,10 @@
         path: 'sa.json'
       register: outputs
 
+    - name: Convert JSON data to string
+      set_fact:
+        json_string: "{{ outputs.content | b64decode | from_json }}"
+
     - name: store output
       debug:
         var: outputs
