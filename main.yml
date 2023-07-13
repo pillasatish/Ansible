@@ -10,31 +10,44 @@
 
 
 
+# ---
+# - name: Load and Print JSON Data
+#   hosts: localhost
+#   gather_facts: false
+#   tasks:
+#     - name: Load JSON data
+#       slurp:
+#         path: 'data.json'
+#       register: json_data
+
+#     - name: Convert JSON data to string
+#       set_fact:
+#         json_string: "{{ json_data.content | b64decode | from_json }}"
+
+#     # - name: Print JSON data
+#     #   debug:
+#     #     msg: "{{ item.item.result.output }}"
+#     #   loop: "{{ json_string }}"
+
+#     - name: Extract result output values
+#       set_fact:
+#         result_outputs: "{{ json_string | map(attribute='item.result') | list }}"
+
+#     - name: Print result output values
+#       debug:
+#         var: result_outputs
+
+
 ---
-- name: Load and Print JSON Data
+- name: Set custom statistics
   hosts: localhost
   gather_facts: false
+
+  vars:
+    outputs: '{"output": ["value1", "value2", "value3"]}'
+
   tasks:
-    - name: Load JSON data
-      slurp:
-        path: 'data.json'
-      register: json_data
-
-    - name: Convert JSON data to string
-      set_fact:
-        json_string: "{{ json_data.content | b64decode | from_json }}"
-
-    # - name: Print JSON data
-    #   debug:
-    #     msg: "{{ item.item.result.output }}"
-    #   loop: "{{ json_string }}"
-
-    - name: Extract result output values
-      set_fact:
-        result_outputs: "{{ json_string | map(attribute='item.result') | list }}"
-
-    - name: Print result output values
-      debug:
-        var: result_outputs
-
-
+    - name: Set statistics
+      set_stats:
+        data:
+          custom_stat: '{{ {"output": outputs | from_json} | to_json }}'
