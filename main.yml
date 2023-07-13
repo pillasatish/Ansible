@@ -42,8 +42,6 @@
 - name: Set custom statistics
   hosts: localhost
   gather_facts: false
-  # vars:
-  #   outputs: {"output": ["value1", "value2", "value3"]}
 
   tasks:
     - name: Load JSON data
@@ -62,4 +60,4 @@
     - name: Set statistics
       set_stats:
         data:
-          custom_stat: "{{ {'output': json_string | from_json} | to_json }}"
+          custom_stat: "{{ {'output': json_string} }}"
