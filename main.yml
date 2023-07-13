@@ -43,14 +43,23 @@
   gather_facts: false
 
   tasks:
-    - name: Load JSON data
-      slurp:
-        path: 'sa.json'
-      register: outputs
+    # - name: Load JSON data
+    #   slurp:
+    #     path: 'sa.json'
+    #   register: outputs
 
     - name: Convert JSON data to string
       set_fact:
-        outputs: "{{ outputs.content | b64decode | from_json }}" 
+        outputs: {
+  "ansible_loop_var": "item",
+  "_ansible_no_log": false,
+  "item": "{\"timestamp\": \"20\",\"host\":\"12\"}\n",
+  "changed": false,
+  "msg": "{\"timestamp\": \"20\",\"host\":\"12\"}\n",
+  "_ansible_verbose_always": true,
+  "_ansible_item_label": "{\"timestamp\": \"20\",\"host\":\"12\"}\n"
+}
+ 
   
     - name: Extract Output Values and Set Facts
       set_fact:
@@ -60,9 +69,9 @@
       debug:
         var: msg_dict
 
-    - name: Print JSON data
-      debug:
-        var: outputs
+    # - name: Print JSON data
+    #   debug:
+    #     msg: {{outputs}}
         
     - name: Set statistics
       set_stats:
