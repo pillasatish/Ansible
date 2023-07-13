@@ -45,16 +45,16 @@
 
   tasks:
     - name: Convert JSON data to string
-        var:
-          outputs: "{\"ansible_loop_var\": \"item\", \"_ansible_no_log\": false, \"item\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"changed\": false, \"msg\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"_ansible_verbose_always\": true, \"_ansible_item_label\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\"}"
-  
-    - name: Extract Output Values and Set Facts
       set_fact:
-        msg_dict: "{{ outputs.results | from_json | map(attribute='msg') | list }}"
+        outputs: "{\"ansible_loop_var\": \"item\", \"_ansible_no_log\": false, \"item\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"changed\": false, \"msg\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"_ansible_verbose_always\": true, \"_ansible_item_label\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\"}"
+  
+    # - name: Extract Output Values and Set Facts
+    #   set_fact:
+    #     msg_dict: "{{ outputs.results | from_json | map(attribute='msg') | list }}"
 
     - name: Print Output List
       debug:
-        var: msg_dict
+        var: outputs
 
     - name: Set statistics
       set_stats:
