@@ -55,7 +55,7 @@
   
     - name: Extract Output Values and Set Facts
       set_fact:
-        msg_dict: "{{ outputs | map(attribute='msg') | list | combine }}"
+        msg_dict: "{{ outputs | map(attribute='msg') | list }}"
 
     - name: Print Output List
       debug:
