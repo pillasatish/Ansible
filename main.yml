@@ -55,7 +55,7 @@
 
     - name: Print JSON data
       debug:
-        msg: "{{ json_string }}"
+        var: json_string
         
     - name: Set statistics
       set_stats:
