@@ -43,14 +43,15 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Load JSON data
-      slurp:
-        path: 'sa.json'
-      register: outputs
+    # - name: Load JSON data
+    #   slurp:
+    #     path: 'sa.json'
+    #   register: outputs
 
     - name: store output
       debug:
-        var: outputs
+        var: 
+          outputs: "output": ["value1", "value2", "value3"]
         
     - name: Set statistics
       set_stats:
