@@ -38,27 +38,32 @@
 #         var: result_outputs
 
 
----
-- name: Set custom statistics
+- name: Remove null values from output
   hosts: localhost
   gather_facts: false
+  vars:
+    output:
+      - - "{\"timestamp\": \"20\",\"host\":\"12\"}\\n"
+        - null
+      - - "{\"timestamp\": \"21\",\"host\":\"13\"}\\n"
+        - null
+      - - null
+        - msg: "this node"
+          issue_code: "error"
+      - null
+      - msg: "this node"
+        issue_code: "error"
+    output_filtered: []
 
   tasks:
-    - name: Convert JSON data to string
+    - name: Remove null values
       set_fact:
-        outputs: "{\"ansible_loop_var\": \"item\", \"_ansible_no_log\": false, \"item\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"changed\": false, \"msg\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\", \"_ansible_verbose_always\": true, \"_ansible_item_label\": \"{\\\"timestamp\\\": \\\"20\\\",\\\"host\\\":\\\"12\\\"}\\n\"}"
-  
-    # - name: Extract Output Values and Set Facts
-    #   set_fact:
-    #     msg_dict: "{{ outputs.results | from_json | map(attribute='msg') | list }}"
+        output_filtered: "{{ output_filtered + [item] }}"
+      loop: "{{ output }}"
+      when: item is not null
 
-    - name: Print Output List
+    - name: Print filtered output
       debug:
-        var: outputs
-
-    - name: Set statistics
-      set_stats:
-        data:
-          custom_stat: "{{ outputs }}"
+        var: output_filtered
 
 
