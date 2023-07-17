@@ -37,7 +37,7 @@
 #       debug:
 #         var: result_outputs
 
-
+---
 - name: Remove null values from output
   hosts: localhost
   gather_facts: false
