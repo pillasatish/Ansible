@@ -60,11 +60,12 @@
       set_fact:
         output_filtered: "{{ output_filtered + [item] }}"
       loop: "{{ output }}"
-      when: item is not null and item != [null]
+      when: item is not defined or (item | type_debug != 'list' or item != [null])
 
     - name: Print filtered output
       debug:
         var: output_filtered
+
 
 
 
