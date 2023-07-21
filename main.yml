@@ -38,33 +38,56 @@
 #         var: result_outputs
 
 ---
-- name: Remove null values from output
+- name: Modify ansible_facts.output
   hosts: localhost
   gather_facts: false
-  vars:
-    output:
-      - - "{\"timestamp\": \"20\",\"host\":\"12\"}\\n"
-        - null
-      - - "{\"timestamp\": \"21\",\"host\":\"13\"}\\n"
-        - null
-      - - null
-        - msg: "this node"
-          issue_code: "error"
-      - null
-      - msg: "this node"
-        issue_code: "error"
-    output_filtered: []
-
   tasks:
-    - name: Remove null values
+    - name: Set input JSON
       set_fact:
-        output_filtered: "{{ output_filtered + [item] }}"
-      loop: "{{ output }}"
-      when: item is not defined or (item != null and item != [null])
+        input_data:
+          "changed": false,
+          "ansible_facts": {
+            "output": [
+              [
+                "'{\"timestamp\": \"20\",\"host\":\"12\"}\n'\n",
+                null
+              ],
+              [
+                "'{\"timestamp\": \"20\",\"host\":\"12\"}\n\n '\n",
+                null
+              ],
+              [
+                null,
+                {
+                  "msg": "this is my node",
+                  "issue": "connect",
+                  "details": {}
+                }
+              ],
+              [
+                null,
+                {
+                  "msg": "this is my node",
+                  "issue": "connect",
+                  "details": {}
+                }
+              ]
+            ]
+          },
+          "ansible_log": false
 
-    - name: Print filtered output
+    - name: Modify ansible_facts.output
+      set_fact:
+        input_data:
+          ansible_facts:
+            output: "{{ input_data.ansible_facts.output | json_query('[*][0]') | map('list') }}"
+          changed: false
+          ansible_log: false
+
+    - name: Display modified output
       debug:
-        var: output_filtered
+        var: input_data
+
 
 
 
