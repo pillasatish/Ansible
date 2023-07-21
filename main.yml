@@ -44,9 +44,9 @@
     - name: Set input JSON
       set_fact:
         input_data:
-          "changed": false
-          "ansible_facts":
-            "output":
+          changed: false
+          ansible_facts:
+            output:
               - - >
                   {"timestamp": "20","host":"12"}
                 - null
@@ -61,12 +61,13 @@
                 - "msg": "this is my node"
                   "issue": "connect"
                   "details": {}
-          "ansible_log": false
+          ansible_log: false
 
     - name: Remove null values from ansible_facts.output
       set_fact:
         ansible_facts:
-          output: "{{ ansible_facts.output | reject('eq', null) | list }}"
+          output: "{{ input_data.ansible_facts.output | map('select', '!=', null) | list }}"
+
 
 
 
