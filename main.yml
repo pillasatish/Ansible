@@ -65,9 +65,7 @@
 
     - name: Remove null values from input_data.ansible_facts.output
       set_fact:
-        input_data:
-          ansible_facts:
-            output: "{{ input_data.ansible_facts.output | map('select', '!=', null) | list }}"
+        input_data: "{{ input_data | combine({'ansible_facts': {'output': input_data.ansible_facts.output | map('select', '!=', null) | list}}) }}"
 
     - name: Show modified ansible_facts.output
       debug:
