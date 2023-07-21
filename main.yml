@@ -68,7 +68,14 @@
       set_fact:
         input_data:
           ansible_facts:
-            output: "{{ input_data.ansible_facts.output | selectattr('0', 'defined') | list }}"
+            output: >-
+              {%- set modified_output = [] -%}
+              {%- for item in input_data.ansible_facts.output -%}
+                {%- if item[1] is not defined or item[0] is not defined -%}
+                  {%- set _ = modified_output.append(item | rejectattr('undefined', 'equalto', true) | list) -%}
+                {%- endif -%}
+              {%- endfor -%}
+              {{ modified_output }}
           changed: false
           ansible_log: false
 
