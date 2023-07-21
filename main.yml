@@ -68,7 +68,7 @@
       set_fact:
         input_data:
           ansible_facts:
-            output: "{{ input_data.ansible_facts.output | json_query('[*] | [? ![1]]') }}"
+            output: "{{ input_data.ansible_facts.output | select('first') | list }}"
           changed: false
           ansible_log: false
 
