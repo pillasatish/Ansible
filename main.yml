@@ -71,7 +71,7 @@
             output: >-
               {%- set modified_output = [] -%}
               {%- for item in input_data.ansible_facts.output -%}
-                {%- if item[0] is not defined or item[1] is defined -%}
+                {%- if item | select('.[1]') | list -%}
                   {%- set _ = modified_output.append(item) -%}
                 {%- endif -%}
               {%- endfor -%}
@@ -82,6 +82,7 @@
     - name: Display modified output
       debug:
         var: input_data
+
 
 
 
