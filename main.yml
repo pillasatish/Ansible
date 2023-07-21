@@ -45,35 +45,21 @@
     - name: Set input JSON
       set_fact:
         input_data:
-          "changed": false,
-          "ansible_facts": {
-            "output": [
-              [
-                "'{\"timestamp\": \"20\",\"host\":\"12\"}\n'\n",
-                null
-              ],
-              [
-                "'{\"timestamp\": \"20\",\"host\":\"12\"}\n\n '\n",
-                null
-              ],
-              [
-                null,
-                {
-                  "msg": "this is my node",
-                  "issue": "connect",
+          "changed": false
+          "ansible_facts":
+            "output":
+              - - "'{\"timestamp\": \"20\",\"host\":\"12\"}\n'\n"
+                - null
+              - - "'{\"timestamp\": \"20\",\"host\":\"12\"}\n\n '\n"
+                - null
+              - - null
+                - "msg": "this is my node"
+                  "issue": "connect"
                   "details": {}
-                }
-              ],
-              [
-                null,
-                {
-                  "msg": "this is my node",
-                  "issue": "connect",
+              - - null
+                - "msg": "this is my node"
+                  "issue": "connect"
                   "details": {}
-                }
-              ]
-            ]
-          },
           "ansible_log": false
 
     - name: Modify ansible_facts.output
@@ -87,6 +73,7 @@
     - name: Display modified output
       debug:
         var: input_data
+
 
 
 
