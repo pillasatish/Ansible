@@ -72,6 +72,30 @@
       debug:
         msg: "{{ json_data }}"
 
+    - name: Define filter
+      filter:
+        name: remove_null_values_and_empty_strings_in_arrays
+        function:
+          def remove_null_values_and_empty_strings_in_arrays(json_data):
+            """Removes null values and empty strings from arrays in a JSON object.
+
+            Args:
+              json_data: The JSON object to remove null values and empty strings from.
+
+            Returns:
+              A new JSON object with the null values and empty strings removed.
+            """
+
+            output = {}
+            for key, value in json_data.items():
+              if value is not None:
+                if isinstance(value, list):
+                  output[key] = [item.strip() for item in value if item is not None and len(item.strip()) > 0]
+                else:
+                  output[key] = value
+              else:
+                output[key] = None
+            return output
 
 
 
