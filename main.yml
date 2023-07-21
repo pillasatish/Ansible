@@ -63,9 +63,11 @@
                   "details": {}
           ansible_log: false
 
-    - name: Remove null values from input_data.ansible_facts.output
+    - name: Remove null values from ansible_facts.output
       set_fact:
-        input_data: "{{ input_data | combine({'ansible_facts': {'output': input_data.ansible_facts.output | map('select', '!=', null) | list}}) }}"
+        input_data:
+          ansible_facts:
+            output: "{{ input_data.ansible_facts.output | json_query('[*] | [?@ != `null`]' ) }}"
 
     - name: Show modified ansible_facts.output
       debug:
