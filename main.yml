@@ -64,24 +64,13 @@
                   "details": {}
           "ansible_log": false
 
-    - name: Modify ansible_facts.output
+    - name: Remove null values from JSON
       set_fact:
-        input_data:
-          ansible_facts:
-            output: >-
-              {%- set modified_output = [] -%}
-              {%- for item in input_data.ansible_facts.output -%}
-                {%- if item[1] is not defined or item[0] is not defined -%}
-                  {%- set _ = modified_output.append(item | rejectattr('undefined', 'equalto', true) | list) -%}
-                {%- endif -%}
-              {%- endfor -%}
-              {{ modified_output }}
-          changed: false
-          ansible_log: false
+        json_data: "{{ input_data | remove_null_values_and_empty_strings_in_arrays }}"
 
-    - name: Display modified output
+    - name: Print JSON
       debug:
-        var: input_data
+        msg: "{{ json_data }}"
 
 
 
