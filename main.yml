@@ -68,14 +68,7 @@
       set_fact:
         input_data:
           ansible_facts:
-            output: >-
-              {%- set modified_output = [] -%}
-              {%- for item in input_data.ansible_facts.output -%}
-                {%- if item[1] is not defined -%}
-                  {%- set _ = modified_output.append([item[0]]) -%}
-                {%- endif -%}
-              {%- endfor -%}
-              {{ modified_output }}
+            output: "{{ input_data.ansible_facts.output | json_query('[*] | [? ![1]]') }}"
           changed: false
           ansible_log: false
 
