@@ -48,9 +48,11 @@
           "changed": false
           "ansible_facts":
             "output":
-              - - "'{\"timestamp\": \"20\",\"host\":\"12\"}\n'\n"
+              - - >
+                  {"timestamp": "20","host":"12"}
                 - null
-              - - "'{\"timestamp\": \"20\",\"host\":\"12\"}\n\n '\n"
+              - - >
+                  {"timestamp": "20","host":"12"}
                 - null
               - - null
                 - "msg": "this is my node"
