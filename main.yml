@@ -37,7 +37,6 @@
 #       debug:
 #         var: result_outputs
 
----
 - name: Modify ansible_facts.output
   hosts: localhost
   gather_facts: false
@@ -64,24 +63,11 @@
                   "details": {}
           "ansible_log": false
 
-    - name: Modify ansible_facts.output
+    - name: Remove null values from ansible_facts.output
       set_fact:
-        input_data:
-          ansible_facts:
-            output: >-
-              {%- set modified_output = [] -%}
-              {%- for item in input_data.ansible_facts.output -%}
-                {%- if item[1] is defined -%}
-                  {%- set _ = modified_output.append(item) -%}
-                {%- endif -%}
-              {%- endfor -%}
-              {{ modified_output }}
-          changed: false
-          ansible_log: false
+        ansible_facts:
+          output: "{{ ansible_facts.output | reject('eq', null) | list }}"
 
-    - name: Display modified output
-      debug:
-        var: input_data
 
 
 
