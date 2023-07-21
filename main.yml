@@ -68,7 +68,7 @@
       set_fact:
         input_data:
           ansible_facts:
-            output: "{{ input_data.ansible_facts.output | json_query('[*][0]') | map('list') }}"
+            output: "{{ input_data.ansible_facts.output | json_query('[*][0]') | map('list') | reject('match', '^null$') | list }}"
           changed: false
           ansible_log: false
 
