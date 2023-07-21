@@ -48,10 +48,10 @@
           ansible_facts:
             output:
               - - >
-                  {"timestamp": "20","host":"12"}
+                  {"timestamp": "20", "host": "12"}
                 - null
               - - >
-                  {"timestamp": "20","host":"12"}
+                  {"timestamp": "20", "host": "12"}
                 - null
               - - null
                 - "msg": "this is my node"
@@ -63,10 +63,16 @@
                   "details": {}
           ansible_log: false
 
-    - name: Remove null values from ansible_facts.output
+    - name: Remove null values from input_data.ansible_facts.output
       set_fact:
-        ansible_facts:
-          output: "{{ input_data.ansible_facts.output | map('select', '!=', null) | list }}"
+        input_data:
+          ansible_facts:
+            output: "{{ input_data.ansible_facts.output | map('select', '!=', null) | list }}"
+
+    - name: Show modified ansible_facts.output
+      debug:
+        var: input_data.ansible_facts.output
+
 
 
 
