@@ -28,16 +28,13 @@
   debug:
     var: nodenames,params
 
-# - name: Get version number
-#   raw: "echo {{ version }}"
-#   register: version
+- name: Check Version Pattern
+  vars:
+    version_to_check: "{{ version }}"  # Replace 'version_variable' with the actual variable name you use for the version
 
-# - name: Match version number with regular expression
-#   shell: |
-#     python -c "import re
-#     regex = '^[1-9]\d+\.\d+$'
-#     match = re.match(regex, str(version))
-#     if match:
-#       print('The string matches the regular expression.')
-#     else:
-#       print('The string does not match the regular expression.')"
+- name: Verify version format
+  assert:
+    that: "version_to_check is match('^[1-9]\\d+\\.\\d+$')"
+    fail_msg: "Version '{{ version_to_check }}' does not match the required format: 'x.y'"
+  vars:
+    ansible_skip_tags: always

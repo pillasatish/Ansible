@@ -1,37 +1,12 @@
-# - name: loop through hostnames
-#   hosts: localhost
-# - name: Call post role
-#   hosts: localhost
-#   gather_facts: false
-#   tasks:
-#     - name: Include post role
-#       import_role:
-#         name: post
-
----
-- name: Validate Version
+- name: loop through hostnames
+  hosts: localhost
+- name: Call post role
   hosts: localhost
   gather_facts: false
-
   tasks:
-    - name: Read JSON file
-      slurp:
-        src: file.json
-      register: json_data
-
-    - name: Parse JSON content
-      set_fact:
-        version: "{{ (json_data.content | b64decode | from_json)['parameters']['version']['value'] }}"
-        pattern: "{{ (json_data.content | b64decode | from_json)['parameters']['version']['type'][8:-1] }}"
-
-    - name: Check if the value matches the regular expression
-      debug:
-        msg: |
-          {% if str(version) is match(str(pattern)) %}
-          The value matches the regular expression.
-          {% else %}
-          The value does not match the regular expression.
-          {% endif %}
+    - name: Include post role
+      import_role:
+        name: post
 
 
 
