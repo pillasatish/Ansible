@@ -29,7 +29,7 @@
     var: nodenames,params
 
 - name: Check Version Pattern
-  vars:
+  set_fact:
     version_to_check: "{{ version }}"  # Replace 'version_variable' with the actual variable name you use for the version
 
 - name: Verify version format
