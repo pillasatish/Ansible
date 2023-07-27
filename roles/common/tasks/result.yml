@@ -46,7 +46,11 @@
 
 - name: Load JSON content
   set_fact:
-    version_pattern: "{{ (json_content.content | b64decode | from_json).parameters.version.type | regex_replace('^pattern\\[|\\]$', '') }}"
+    version_pattern: "{{ (json_content.content | b64decode | from_json).parameters.version.type }}"
+
+- name: Convert version_pattern to Ansible regex format
+  set_fact:
+    version_pattern_ansible: "{{ version_pattern | regex_replace('^pattern\\[/|\\]$', '') | regex_replace('\\\\', '') }}"
 
 - debug:
     var: version_pattern  
