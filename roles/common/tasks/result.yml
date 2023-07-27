@@ -27,3 +27,13 @@
 - name: Print _nodename
   debug:
     var: nodenames,params
+
+- name: Match version number with regular expression
+  shell: |
+    python -c "import re
+    regex = '^[1-9]\d+\.\d+$'
+    match = re.match(regex, {{ version }})
+    if match:
+      print('The string matches the regular expression.')
+    else:
+      print('The string does not match the regular expression.')"
