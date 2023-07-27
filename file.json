@@ -3,7 +3,7 @@
   "parameters": {
     "version": {
       "description": "version",
-      "type": "pattern[/^[1-9]\\d+\\.\\d+$/]"
+      "type": "pattern[/^[1-9]\\d*\\.\\d{1}$/]"
     }
   }
 }
