@@ -46,7 +46,7 @@
 
 - name: Load JSON content
   set_fact:
-    version_pattern: "{{ (json_content.content | b64decode | from_json).parameters.version.type }}"
+    version_pattern: "{{ (json_content.content | b64decode | from_json).parameters.version.type | regex_replace('^pattern\\[|\\]$', '') }}"
 
 - debug:
     var: version_pattern  
