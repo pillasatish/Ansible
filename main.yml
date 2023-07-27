@@ -27,11 +27,12 @@
     - name: Check if the value matches the regular expression
       debug:
         msg: |
-          {% if version is match(pattern) %}
+          {% if str(version) is match(str(pattern)) %}
           The value matches the regular expression.
           {% else %}
           The value does not match the regular expression.
           {% endif %}
+
 
 
 # ---
