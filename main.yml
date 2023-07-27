@@ -1,12 +1,12 @@
-# # - name: loop through hostnames
-# #   hosts: localhost
-# - name: Call post role
-#   hosts: localhost
-#   gather_facts: false
-#   tasks:
-#     - name: Include post role
-#       import_role:
-#         name: post
+- name: loop through hostnames
+  hosts: localhost
+- name: Call post role
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Include post role
+      import_role:
+        name: post
 
 
 
@@ -37,41 +37,41 @@
 #       debug:
 #         var: result_outputs
 
-- name: Modify ansible_facts.output
-  hosts: localhost
-  gather_facts: false
-  tasks:
-    - name: Set input JSON
-      set_fact:
-        input_data:
-          changed: false
-          ansible_facts:
-            output:
-              - - >
-                  {"timestamp": "20", "host": "12"}
-                - null
-              - - >
-                  {"timestamp": "20", "host": "12"}
-                - null
-              - - null
-                - "msg": "this is my node"
-                  "issue": "connect"
-                  "details": {}
-              - - null
-                - "msg": "this is my node"
-                  "issue": "connect"
-                  "details": {}
-          ansible_log: false
+# - name: Modify ansible_facts.output
+#   hosts: localhost
+#   gather_facts: false
+#   tasks:
+#     - name: Set input JSON
+#       set_fact:
+#         input_data:
+#           changed: false
+#           ansible_facts:
+#             output:
+#               - - >
+#                   {"timestamp": "20", "host": "12"}
+#                 - null
+#               - - >
+#                   {"timestamp": "20", "host": "12"}
+#                 - null
+#               - - null
+#                 - "msg": "this is my node"
+#                   "issue": "connect"
+#                   "details": {}
+#               - - null
+#                 - "msg": "this is my node"
+#                   "issue": "connect"
+#                   "details": {}
+#           ansible_log: false
 
-    - name: Remove null values from ansible_facts.output
-      set_fact:
-        input_data:
-          ansible_facts:
-            output: "{{ input_data.ansible_facts.output | json_query('[*] | [?@ != null]') | map('select', '!=null') | map('first') | list }}"
+#     - name: Remove null values from ansible_facts.output
+#       set_fact:
+#         input_data:
+#           ansible_facts:
+#             output: "{{ input_data.ansible_facts.output | json_query('[*] | [?@ != null]') | map('select', '!=null') | map('first') | list }}"
 
-    - name: Show modified ansible_facts.output
-      debug:
-        var: input_data.ansible_facts.output
+#     - name: Show modified ansible_facts.output
+#       debug:
+#         var: input_data.ansible_facts.output
 
 
 
