@@ -16,7 +16,7 @@
   tasks:
     - name: Read JSON file
       slurp:
-        src: my_json_file.json
+        src: file.json
       register: json_data
 
     - name: Parse JSON content
