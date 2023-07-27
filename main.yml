@@ -16,7 +16,7 @@
   tasks:
     - name: Read JSON file
       slurp:
-        src: file.json
+        src: my_json_file.json
       register: json_data
 
     - name: Parse JSON content
@@ -27,7 +27,7 @@
     - name: Check if the value matches the regular expression
       debug:
         msg: |
-          {% if version | regex_match(pattern) %}
+          {% if version is match(pattern) %}
           The value matches the regular expression.
           {% else %}
           The value does not match the regular expression.
