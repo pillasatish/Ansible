@@ -28,15 +28,15 @@
   debug:
     var: nodenames,params
 
-- name: Get version number
-  raw: "echo {{ version }}"
-  register: version
+# - name: Get version number
+#   raw: "echo {{ version }}"
+#   register: version
 
 - name: Match version number with regular expression
   shell: |
     python -c "import re
     regex = '^[1-9]\d+\.\d+$'
-    match = re.match(regex, str(version.stdout))
+    match = re.match(regex, str(version))
     if match:
       print('The string matches the regular expression.')
     else:
