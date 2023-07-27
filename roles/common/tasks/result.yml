@@ -38,3 +38,19 @@
     fail_msg: "Version '{{ version_to_check }}' does not match the required format: 'x.y'"
   vars:
     ansible_skip_tags: always
+
+- name: Read JSON file
+  slurp:
+    src: file.json
+  register: json_content
+
+- name: Load JSON content
+  set_fact:
+    version_pattern: "{{ (json_content.content | b64decode | from_json).parameters.version.type }}"
+
+- name: Verify version format
+  assert:
+    that: "version is match(version_pattern)"
+    fail_msg: "Version '{{ version }}' does not match the required format: '{{ version_pattern }}'"
+  vars:
+    ansible_skip_tags: always
