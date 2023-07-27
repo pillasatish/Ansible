@@ -48,6 +48,9 @@
   set_fact:
     version_pattern: "{{ (json_content.content | b64decode | from_json).parameters.version.type }}"
 
+- debug:
+    var: version_pattern  
+
 - name: Verify version formatat
   assert:
     that: "version is match(version_pattern)"
