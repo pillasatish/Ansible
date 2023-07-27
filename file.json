@@ -3,7 +3,7 @@
   "parameters": {
     "version": {
       "description": "version",
-      "type": "Optional[String[2]]"
+      "type": "pattern[/^[1-9]\\d+\\.\\d+$/]"
     }
   }
 }
