@@ -4,7 +4,7 @@
     "version": {
       "description": "version",
       "type": "pattern[/^[1-9]\\d+\\.\\d+$/]",
-      "value": 14.7
+      "value": "14.7"
     }
   }
 }
